@@ -24,8 +24,14 @@ const userSchema=mongoose.Schema({
     },
     status:{
         type:String,
-        enum:['ACTIVE','Banned']// values ky ho sakte h 
+        enum:['ACTIVE','Banned'],// values ky ho sakte h 
+        default:'Active'
+
     },
+    role:{
+        type:String,
+        required:[true,'role is required']
+    }
     
 },{
     timestamps:true
@@ -39,3 +45,5 @@ userSchema.pre('save',async function (next) {
 userSchema.methods.matchPassword=async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword,this.password)
 }
+
+module.exports=mongoose.model('User',userSchema)
