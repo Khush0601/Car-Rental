@@ -2,10 +2,13 @@ const express=require('express')
 const cors=require('cors')
 const path=require('path')// inbuilt in node js
 const dotenv=require('dotenv')
-
-dotenv.config() // for supporting dotenv
+dotenv.config() 
+const connectDB=require("./configs/db")
+// for supporting dotenv
 
 //will connect db later
+ connectDB()
+
 const app=express()
 //CORS config
 app.use(cors({
